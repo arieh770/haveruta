@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AudioCall</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <main class="container">
+
+        <!-- ========================= -->
+        <!-- CONNEXION -->
+        <!-- ========================= -->
+
+        <section id="loginScreen" class="screen">
+
+            <div class="logo">
+                📞
+            </div>
+
+            <h1>AudioCall</h1>
+
+            <p class="subtitle">
+                Appelle quelqu'un directement depuis ton navigateur.
+            </p>
+
+            <div class="login-card">
+
+                <label for="username">
+                    Ton prénom
+                </label>
+
+                <input
+                    id="username"
+                    type="text"
+                    maxlength="20"
+                    placeholder="Ex : Arieh"
+                    autocomplete="off"
+                >
+
+                <button id="joinButton" class="primary-button">
+                    Entrer
+                </button>
+
+                <p id="loginError" class="error"></p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================= -->
+        <!-- APPLICATION -->
+        <!-- ========================= -->
+
+        <section
+            id="appScreen"
+            class="screen hidden"
+        >
+
+            <header class="topbar">
+
+                <div>
+                    <h1>AudioCall</h1>
+
+                    <p>
+                        Connecté en tant que
+                        <strong id="myUsername"></strong>
+                    </p>
+                </div>
+
+                <div class="status">
+                    <span class="status-dot"></span>
+                    En ligne
+                </div>
+
+            </header>
+
+
+            <!-- Utilisateurs -->
+
+            <div class="users-section">
+
+                <h2>
+                    Personnes en ligne
+                </h2>
+
+                <p
+                    id="usersCount"
+                    class="small-text"
+                >
+                    0 personne
+                </p>
+
+                <div id="usersList"></div>
+
+                <div
+                    id="noUsers"
+                    class="empty"
+                >
+                    <div class="empty-icon">
+                        👥
+                    </div>
+
+                    <p>
+                        Personne d'autre n'est connecté.
+                    </p>
+
+                    <small>
+                        Ouvre le site dans une autre fenêtre
+                        pour tester.
+                    </small>
+                </div>
+
+            </div>
+
+
+            <!-- Appel -->
+
+            <div
+                id="callPanel"
+                class="call-panel hidden"
+            >
+
+                <div class="call-avatar">
+                    📞
+                </div>
+
+                <h2 id="callName">
+                    Appel
+                </h2>
+
+                <p id="callStatus">
+                    Appel en cours...
+                </p>
+
+                <div class="call-animation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <button
+                    id="hangUpButton"
+                    class="hangup-button"
+                >
+                    🔴 Raccrocher
+                </button>
+
+            </div>
+
+
+            <!-- Appel entrant -->
+
+            <div
+                id="incomingPanel"
+                class="incoming-panel hidden"
+            >
+
+                <div class="incoming-icon">
+                    📞
+                </div>
+
+                <h2>
+                    Appel entrant
+                </h2>
+
+                <p id="incomingName">
+                    Quelqu'un t'appelle
+                </p>
+
+                <div class="incoming-buttons">
+
+                    <button
+                        id="acceptButton"
+                        class="accept-button"
+                    >
+                        🟢 Accepter
+                    </button>
+
+                    <button
+                        id="rejectButton"
+                        class="reject-button"
+                    >
+                        🔴 Refuser
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Audio reçu -->
+
+    <audio
+        id="remoteAudio"
+        autoplay
+    ></audio>
+
+
+    <!-- Socket.IO -->
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- Notre JavaScript -->
+
+    <script src="app.js"></script>
+
+</body>
+</html>
